@@ -1,30 +1,40 @@
 import React from 'react';
-import {Navbar, NavbarBrand} from 'reactstrap';
-import Menu from './components/MenuComponent';
+import Main from './components/mainComponent';
 import './App.css';
-import {DISHES} from './shared/dishes';
+import {BrowserRouter} from 'react-router-dom';
 
 
 
 class App extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      dishes : DISHES
-    };
+  static getDerivedStateFromProps(){
+    console.log('derived state')
+  }
+
+  shouldComponentUpdate (){
+    console.log('sHould COmponent update App')
+    return true;
   }
   render(){
+    console.log('render')
     return(  
+      <BrowserRouter>
         <div>
-          <Navbar dark color="primary">
-            <div className="container">
-              <NavbarBrand href="/">ConFusion</NavbarBrand>
-            </div>
-          </Navbar>
-          <Menu dishes={this.state.dishes}/>
+          <Main/>
         </div>
+      </BrowserRouter>
     )
+  }
+
+  getSnapshotBeforeUpdate(){
+    console.log('GEt Snap Shot App');
+  }
+
+  componentDidUpdate(){
+    console.log('Component Did Update App');
+  }
+  componentDidMount(){
+    console.log('componentDidMount')
   }
 }
 
